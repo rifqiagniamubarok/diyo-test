@@ -1,36 +1,24 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import Webcam from 'react-webcam';
-
-const videoConstraints = {
-  width: 1280,
-  height: 720,
-  facingMode: 'user',
-};
+import React, { useState } from 'react';
+import { QrReader } from 'react-qr-reader';
 
 const Scan = () => {
-  const [res, setRes] = useState('');
-  const webcamRef = useRef(null);
-  const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setRes(imageSrc);
-  }, [webcamRef]);
+  const [data, setData] = useState('No result');
 
   return (
     <div>
-      <div>
-        <Webcam
-          audio={false}
-          height={720}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          width={1280}
-          videoConstraints={videoConstraints}
-        />
-      </div>
-      <button onClick={capture} className="bg-red-400">
-        Capture photo
-      </button>
-      <p>{res}</p>
+      <QrReader
+        onResult={(result, error) => {
+          if (!!result) {
+            setData(result?.text);
+          }
+
+          if (!!error) {
+            console.info(error);
+          }
+        }}
+        style={{ width: '100%' }}
+      />
+      <p>{data}</p>
     </div>
   );
 };

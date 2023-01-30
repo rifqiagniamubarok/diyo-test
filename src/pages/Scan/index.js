@@ -19,6 +19,7 @@ const Scan = () => {
         style={{ width: '100%' }}
       />
       <p>{data}</p>
+      <p>testt</p>
     </div>
   );
 };

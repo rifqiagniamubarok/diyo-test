@@ -1,30 +1,36 @@
-import { useEffect, useState } from 'react';
-import { useHtml5QrCodeScanner } from 'react-html5-qrcode-reader';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Webcam from 'react-webcam';
+
+const videoConstraints = {
+  width: 1280,
+  height: 720,
+  facingMode: 'user',
+};
 
 const Scan = () => {
   const [res, setRes] = useState('');
-  const { Html5QrcodeScanner } = useHtml5QrCodeScanner(
-    'url to the .min.js (see examples).'
-  );
+  const webcamRef = useRef(null);
+  const capture = useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setRes(imageSrc);
+  }, [webcamRef]);
 
-  useEffect(() => {
-    if (Html5QrcodeScanner) {
-      // Creates anew instance of `HtmlQrcodeScanner` and renders the block.
-      let html5QrcodeScanner = new Html5QrcodeScanner(
-        'reader',
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        /* verbose= */ false
-      );
-      html5QrcodeScanner.render(
-        (data: any) => console.log('success ->', data),
-        (err: any) => console.log('err ->', err)
-      );
-    }
-  }, [Html5QrcodeScanner]);
   return (
     <div>
-      <p>hello</p>
-      <div id="reader">ssd</div>
+      <div>
+        <Webcam
+          audio={false}
+          height={720}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          width={1280}
+          videoConstraints={videoConstraints}
+        />
+      </div>
+      <button onClick={capture} className="bg-red-400">
+        Capture photo
+      </button>
+      <p>{res}</p>
     </div>
   );
 };

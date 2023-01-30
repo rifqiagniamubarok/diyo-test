@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
-import { QrReader } from 'react-qr-reader';
+import BarcodeScannerComponent from 'react-qr-barcode-scanner';
 
 const Scan = () => {
-  const [data, setData] = useState('No result');
+  const [data, setData] = useState('Not Found');
 
   return (
     <div>
-      <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            setData(result?.text);
-          }
-
-          if (!!error) {
-            console.info(error);
-          }
+      <BarcodeScannerComponent
+        width={500}
+        height={500}
+        onUpdate={(err, result) => {
+          if (result) setData(result.text);
+          else setData('Not Found');
         }}
-        style={{ width: '100%' }}
       />
       <p>{data}</p>
       <p>testt</p>

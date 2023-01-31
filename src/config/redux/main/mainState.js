@@ -3,15 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const mainState = createSlice({
   name: 'main',
   initialState: {
-    value: 'hellooo hahhahaasdasd',
     idDetailMenu: 0,
     charts: [],
     totalPrice: 0,
   },
   reducers: {
-    changeValue: (state, action) => {
-      state.value = action.payload;
-    },
     inputIdDetailMenu: (state, action) => {
       state.idDetailMenu = Number(action.payload);
     },
@@ -60,15 +56,20 @@ export const mainState = createSlice({
         state.totalPrice = collection2.reduce((past, then) => past + then);
       }
     },
+    clearDataMain: (state) => {
+      state.idDetailMenu = 0;
+      state.charts = [];
+      state.totalPrice = 0;
+    },
   },
 });
 
 export const {
-  changeValue,
   inputIdDetailMenu,
   clearIdDetailMenu,
   addToCharts,
   deleteChart,
+  clearDataMain,
 } = mainState.actions;
 
 export const getMainStateAll = (state) => state.main;

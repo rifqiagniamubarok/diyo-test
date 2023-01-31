@@ -1,4 +1,10 @@
+import { Sorry } from '../../components/atoms';
+
 const Pesanan = () => {
-  return <div>Pesanan</div>;
+  return (
+    <div>
+      <Sorry />
+    </div>
+  );
 };
 export default Pesanan;

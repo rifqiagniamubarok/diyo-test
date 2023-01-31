@@ -1,4 +1,10 @@
+import { Sorry } from '../../components/atoms';
+
 const Favorit = () => {
-  return <div>Favorit</div>;
+  return (
+    <div>
+      <Sorry />
+    </div>
+  );
 };
 export default Favorit;

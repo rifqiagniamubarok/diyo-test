@@ -1,6 +1,6 @@
 import { Routes as Router, Route } from 'react-router-dom';
 import { Navbar } from '../../components/molecules';
-import { Home, Pesanan, Scan, Favorit, Akun } from '../index';
+import { Home, Pesanan, Scan, Favorit, Akun, DetailRestorant } from '../index';
 
 const MainApp = () => {
   return (
@@ -13,6 +13,7 @@ const MainApp = () => {
           <Route path="scan" element={<Scan />} />
           <Route path="favorit" element={<Favorit />} />
           <Route path="akun" element={<Akun />} />
+          <Route path="detail-restorant" element={<DetailRestorant />} />
         </Router>
       </div>
     </div>

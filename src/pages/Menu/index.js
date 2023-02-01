@@ -135,7 +135,7 @@ const Menu = ({ dataMenu }) => {
       </div>
       {charts.length > 0 && (
         <div
-          className="bg-primary grid grid-cols-3  items-center left-4 right-4 bottom-4 px-4 py-2 rounded-lg absolute text-white"
+          className="bg-primary grid grid-cols-3  items-center left-4 right-4 bottom-4 px-4 py-2 rounded-lg fixed text-white"
           onClick={handleToViewBasket}
         >
           <div className="bg-primarydarker w-[40px] h-[34px] rounded-md flex justify-center items-center">

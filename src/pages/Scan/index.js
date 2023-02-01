@@ -37,6 +37,7 @@ const Scan = () => {
                 delay={delay}
                 style={previewStyle}
                 onError={handleError}
+                facingMode="rear"
                 // legacyMode={legacy}
                 onScan={handleScan}
               />
